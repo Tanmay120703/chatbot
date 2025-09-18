@@ -49,6 +49,7 @@ fonttools==4.55.3
 fqdn==1.5.1
 frozenlist==1.7.0
 fsspec==2025.3.2
+git-filter-repo==2.47.0
 gitdb==4.0.12
 GitPython==3.1.45
 google-ai-generativelanguage==0.6.15
@@ -162,7 +163,6 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-json-logger==3.2.1
 pytz==2025.2
-pywin32==308
 pywinpty==2.0.14
 PyYAML==6.0.2
 pyzmq==26.2.0
