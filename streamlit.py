@@ -8,11 +8,20 @@ def generate_threadid():
     return str(uuid.uuid4())
 
 def clear_chat():
+    # Save the current thread before clearing
+    current_thread_id = st.session_state.get('thread_id')
+    if current_thread_id:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        save_thread_metadata(current_thread_id, timestamp)  # ✅ save in SQLite
+
+    # Start a new thread
     thread_id = generate_threadid()
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     st.session_state['thread_id'] = thread_id
-    save_thread_metadata(thread_id, timestamp)  # ✅ save in SQLite
     st.session_state['messages_history'] = []
+
+    # Reload all threads from SQLite for the sidebar
+    st.session_state['chat_thread'] = retrieve_allthreads()
+
 
 def load_conversation(thread_id):
     state = workflow.get_state(config={'configurable': {'thread_id': thread_id}})
